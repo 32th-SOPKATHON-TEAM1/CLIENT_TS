@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function StepRenderer((step, setStep)) {
+export default function StepRenderer({step, setStep}) {
     const [name, setName] = useState('');
     const [propsName, setPropsName] = useState('');
     switch (step) {
