@@ -1,3 +1,12 @@
+import { useState } from "react";
+
 export default function Emotion() {
-  return <div>emotion</div>;
+  const [step, setStep] = useState(1);
+  return (
+    <>
+      <StepRenderer step={step} setStep={setStep} />
+
+    </>
+  )
+
 }
