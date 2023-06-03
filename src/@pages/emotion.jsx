@@ -1,11 +1,11 @@
 import { useState } from "react";
+import StepRender from "../@components/emotion/StepRenderer"
 
 export default function Emotion() {
   const [step, setStep] = useState(1);
   return (
     <>
-      <StepRenderer step={step} setStep={setStep} />
-
+      <StepRender step={step} setStep={setStep} />
     </>
   )
 
