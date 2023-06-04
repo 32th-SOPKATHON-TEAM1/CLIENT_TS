@@ -1,30 +1,36 @@
 import React, { useRef } from 'react'
-import { styled } from 'styled-components';
 import Button from '../common/button';
-import { useRecoilState } from 'recoil';
-import { emotionData } from '../../recoil/emotion';
-import next_btn from  '../../assets/image/next_btn.png'
-import previous_btn from  '../../assets/image/previous_btn.png'
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { emotionData, stepData, userNameData } from '../../recoil/emotion';
+// import next_btn from  '../../assets/image/next_btn.png'
+// import previous_btn from  '../../assets/image/previous_btn.png'
+import styled from 'styled-components';
 
-export default function Question2({setStep, name}) {
-  const [emotion, setEmotion]=useRecoilState(emotionData);
+export default function Question2() {
+  const setEmotion = useSetRecoilState(emotionData);
+  const setStep = useSetRecoilState(stepData);
+  const userName = useRecoilValue(userNameData);
+  
+const todayRef = useRef<HTMLInputElement>(null);
 
   const moveToStep1 = () => {
     setStep(1);
   }
+
+
   const moveToStep3 = () => {
-    setEmotion((prev)=>({...prev, title: todayRef.current.value})) 
-    setStep(3);
+    if (todayRef.current !== null) {
+      setEmotion((prev) => ({ ...prev, title: todayRef.current.value }))
+    }
+      setStep(3);
   }
 
-  
-  const todayRef=useRef(null);
 
   return (
     <>
     <St.AskWrapper>
         <St.QuestionContainer>
-          <p> {name} 님, </p>
+          <p> {userName} 님, </p>
           <p> 오늘 하루는 어땠나요? </p>
           <p> 한 줄로 이야기해 주세요. </p>
           <p>ㅤㅤㅤㅤㅤ</p>
@@ -32,8 +38,8 @@ export default function Question2({setStep, name}) {
         </St.QuestionContainer>
       <St.AnswerName placeholder='오늘 하루를 정리해주세요.' type='text' ref={todayRef}/>
         <St.ButtonContainer>
-          <img className="prev_btn" src={previous_btn} onClick={moveToStep1} />
-          <img className="next_btn" src={next_btn}  onClick={moveToStep3}  />
+          {/* <img className="prev_btn" src={previous_btn} onClick={moveToStep1} />
+          <img className="next_btn" src={next_btn}  onClick={moveToStep3}  /> */}
         </St.ButtonContainer>
     </St.AskWrapper>
     </>

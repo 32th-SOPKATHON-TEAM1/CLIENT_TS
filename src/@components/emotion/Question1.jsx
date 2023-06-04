@@ -1,42 +1,59 @@
-import React, { useEffect, useRef } from 'react'
-import { styled } from 'styled-components'
-import { useRecoilState } from 'recoil';
-import { emotionData } from '../../recoil/emotion';
-import next_btn from  '../../assets/image/next_btn.png'
-import previous_btn from  '../../assets/image/previous_btn.png'
+import { RefObject, useEffect, useRef } from 'react'
+import  styled  from 'styled-components'
+import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
+import { emotionData, stepData, userNameData } from '../../recoil/emotion';
+// import next_btn from  '../../assets/image/next_btn.png'
+// import previous_btn from  '../../assets/image/previous_btn.png'
 import { useNavigate } from 'react-router-dom';
 
-export default function Question1({ setStep, setName }) {
-
+export default function Question1 () {
+  
   const navigation = useNavigate()
-
+  
   const [emotion, setEmotion] = useRecoilState(emotionData);
-
+  const setUserName = useSetRecoilState(userNameData);
+  const setStep = useSetRecoilState(stepData);
+  
   const QuestText = 
-              { 0: `반가워요.
-              저는 당신이 오늘 느낀 감정을
-              한 장의 사진으로 전달해 드릴
-              사진사 로버트입니다. \n 
-              먼저 당신의 이름을 
-              알려주시겠어요? ` }
-
-
+  { 0: `반가워요.
+  저는 당신이 오늘 느낀 감정을
+  한 장의 사진으로 전달해 드릴
+  사진사 로버트입니다. \n 
+  먼저 당신의 이름을 
+  알려주시겠어요? ` }
+  
+  
   const moveToIntro = () => {
     navigation('/');
   }
   
+  const nameRef = useRef<HTMLInputElement>(null);
+
   const moveToStep2 = () => {
-    setEmotion((prev)=>({...prev, name: nameRef.current.value})) 
+    if (nameRef.current) {
+      // null 체크 가져와서
+      const value = nameRef.current.value;
+      if (value) {
+        // 값을 더 명확하게 가지고 오기
+        setEmotion((prev) => ({ ...prev, name: value }))
+      }
+    } else {
+      console.log('nameRef is null')
+    }
+
     setStep(2);
   }
   
-  const nameRef=useRef(null);
   
   useEffect(() => {
   }, [emotion])
 
+  // const getUserName = (e:React.ChangeEvent<HTMLInputElement>) => {
+  //   setUserName(e.target.value);
+  // }
+
   const getUserName = (e) => {
-    setName(e.target.value)
+    setUserName(e.target.value);
   }
 
 
@@ -56,8 +73,8 @@ export default function Question1({ setStep, setName }) {
         <St.ButtonContainer>
           <St.PrevBtn>이전</St.PrevBtn>
         </St.ButtonContainer>
-          <img className="prev_btn" src={previous_btn} onClick={moveToIntro}  />
-          <img className="next_btn" src={next_btn}  onClick={moveToStep2}  />
+          {/* <img className="prev_btn" src={previous_btn} onClick={moveToIntro}  />
+          <img className="next_btn" src={next_btn}  onClick={moveToStep2}  /> */}
       </St.AskWrapper>
       </>
   )
