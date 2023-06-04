@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import Button from '../common/button';
+// import Button from '../common/button';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { emotionData, stepData, userNameData } from '../../recoil/emotion';
 // import next_btn from  '../../assets/image/next_btn.png'

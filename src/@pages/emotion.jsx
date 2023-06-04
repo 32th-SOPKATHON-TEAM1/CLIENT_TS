@@ -3,10 +3,10 @@ import StepRender from "../@components/emotion/StepRenderer"
 import styled from "styled-components";
 
 export default function Emotion() {
-  const [step, setStep] = useState<number>(1);
+  // const [step, setStep] = useState<number>(1);
   return (
     <St.background>
-      <StepRender step={step} setStep={setStep} />
+      <StepRender/>
     </St.background>
   )
 
@@ -14,6 +14,6 @@ export default function Emotion() {
 
 const St = {
   background: styled.div `
-    background-color: ${({ theme }) => theme.colors.blue1};
+    background: ${({ theme }) => theme.colors.bg_gradation1};
   `
 }

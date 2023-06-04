@@ -24,7 +24,7 @@ export const userNameData = atom({
 
 export const stepData = atom({
     key: "stepData",
-    default: 0,
+    default: 1,
 });
 
 export const propsNameData = atom({

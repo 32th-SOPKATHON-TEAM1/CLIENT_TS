@@ -27,7 +27,9 @@ export default function Question1 () {
     navigation('/');
   }
   
-  const nameRef = useRef<HTMLInputElement>(null);
+  // const nameRef = useRef<HTMLInputElement>(null); TS
+  const nameRef = useRef(null); 
+
 
   const moveToStep2 = () => {
     if (nameRef.current) {
@@ -150,6 +152,7 @@ const St = {
     letter-spacing: 0em;
     text-align: center;
     box-shadow: 0px 3px 10px 0px #00000026;
+    
 
 
   `,
