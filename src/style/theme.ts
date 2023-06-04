@@ -10,6 +10,9 @@ const colors = {
   black1: "#171819",
   blue1: "#717BD6",
   blue2: "#C5E4F8",
+  bg_gradation1: "linear-gradient(180deg, #FBF8C2 8.33%, #F1B2BD 69.47%, #BFE5FA 94.79%",
+  bg_gradation2: "linear-gradient(180deg, #FFF9D3 48.96%, #FFCCD5 80.73%)",
+  bg_blue: "radial-gradient(50% 50% at 50% 50%, #FAF7C8 0%, #E9F7FF 100%)"
 };
 
 export type ColorsTypes = typeof colors;
