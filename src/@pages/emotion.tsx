@@ -5,6 +5,7 @@ export default function Emotion() {
   const [step, setStep] = useState(1);
   return (
     <>
+      why
       <StepRender step={step} setStep={setStep} />
     </>
   )
