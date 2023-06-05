@@ -1,105 +1,134 @@
-import React, { useRef } from 'react'
-// import Button from '../common/button';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { RefObject, useEffect, useRef } from 'react'
+import  styled  from 'styled-components'
+import { useRecoilState, useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { emotionData, stepData, userNameData } from '../../recoil/emotion';
-// import next_btn from  '../../assets/image/next_btn.png'
-// import previous_btn from  '../../assets/image/previous_btn.png'
-import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
-export default function Question2() {
-  const setEmotion = useSetRecoilState(emotionData);
-  const setStep = useSetRecoilState(stepData);
-  const userName = useRecoilValue(userNameData);
+export default function Question2 () {
   
-const todayRef = useRef<HTMLInputElement>(null);
+  const navigation = useNavigate()
+  
+  const [emotion, setEmotion] = useRecoilState(emotionData);
+  const userName = useRecoilValue(userNameData);
+  const setStep = useSetRecoilState(stepData);
+  
+  const QuestText = 
+  { 0: `님,
+오늘 하루는 어땠나요?
+한 줄로 이야기해 주세요.
 
+이게 사진의 이름이 될 거예요.` }
+  
+  
   const moveToStep1 = () => {
     setStep(1);
   }
 
-
-  const moveToStep3 = () => {
-    if (todayRef.current !== null) {
-      setEmotion((prev) => ({ ...prev, title: todayRef.current.value }))
-    }
-      setStep(3);
+    const moveToStep3 = () => {
+    setEmotion((prev) => ({ ...prev, title: todayRef.current.value }))
+    setStep(3);
   }
+  
+  // const nameRef = useRef<HTMLInputElement>(null); TS
+  const todayRef = useRef(null); 
 
 
   return (
     <>
-    <St.AskWrapper>
-        <St.QuestionContainer>
-          <p> {userName} 님, </p>
-          <p> 오늘 하루는 어땠나요? </p>
-          <p> 한 줄로 이야기해 주세요. </p>
-          <p>ㅤㅤㅤㅤㅤ</p>
-          <p> 이게 사진의 이름이 될 거예요.</p>
-        </St.QuestionContainer>
-      <St.AnswerName placeholder='오늘 하루를 정리해주세요.' type='text' ref={todayRef}/>
+        <St.AskBox>
+          <St.QuestionContainer>
+          {userName}{QuestText[0]}
+          </St.QuestionContainer>
+        </St.AskBox>
+        <St.AnswerName
+          placeholder='오늘 하루를 정리해주세요.'
+          type='text'
+          ref={todayRef} />
         <St.ButtonContainer>
-          {/* <img className="prev_btn" src={previous_btn} onClick={moveToStep1} />
-          <img className="next_btn" src={next_btn}  onClick={moveToStep3}  /> */}
-        </St.ButtonContainer>
-    </St.AskWrapper>
-    </>
+          <St.PrevBtn onClick={moveToStep1}>이전</St.PrevBtn>
+          <St.NextBtn onClick={moveToStep3}>다음</St.NextBtn>
+      </St.ButtonContainer>
+      </>
   )
 }
 
 const St = {
-  AskWrapper : styled.section`
-    display: flex;
-    flex-direction: column;
+
+  AskBox: styled.div`
+    background-color: rgba(256, 256, 256, 50%);
+    padding: 4rem 4rem; 
+    font-size: 1.6rem
   `,
 
-  QuestionContainer : styled.article `
-  font-family: Pretendard;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 22px;
-  letter-spacing: 0em;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 40px 40px;
-  background: linear-gradient(120.7deg, rgba(255, 255, 255, 0.8) 5.47%, rgba(255, 255, 255, 0) 100%),
-linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
-
+  QuestionContainer: styled.article `
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    white-space: pre-line;
   `,
 
   AnswerName : styled.input`
-  box-sizing: border-box;
-  margin: 55px 0px;
-  padding: 10px;
-  
-  background: rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 50px;
+    margin: 55px 0px;
 
-  height: 50px;
-  width: 100%;
-  border-radius: 12px;
+    box-sizing: border-box;
+    padding: 10px;
+    
+    background: rgba(255, 255, 255, 0.5);
 
-  
-  border: 1px solid #FFFFFF;
-  box-shadow: 0px 0px 4px 3px rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
+    border-radius: 12px;
+    border: 1px solid #FFFFFF;
+    box-shadow: 0px 0px 4px 3px rgba(255, 255, 255, 0.2);
   `,
 
-ButtonContainer : styled.div`
-display: flex;
-  justify-content: center;
+  ButtonContainer : styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 1.2rem;
+  `,
 
-.prev_btn {
-  height: 70;
-  width: 104px;
-  border-radius: 0px;
+  PrevBtn: styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-}
-.next_btn {
-  height: 70px;
-  width: 220px;
-  border-radius: 0px;
+    width: 10.4rem;
+    height: 6rem;
 
-}
+    background: 
+      linear-gradient(88.06deg, rgba(255, 255, 255, 0.6) 25.59%, rgba(255, 255, 255, 0.2) 77.45%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%),
+      linear-gradient(272.47deg, rgba(255, 255, 255, 0.8) -4.42%, rgba(255, 255, 255, 0.2) 100.79%);
+    box-shadow: 0px 3px 10px 0px #00000026;
+      filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.15));
+
+    ${({ theme }) => theme.fonts.body1};
+    color: ${({ theme }) => theme.colors.gray3};
+
+    border-radius: 12px;
+    `,
+
+  NextBtn: styled.div `
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 22rem;
+    height: 6rem;
+
+    background: 
+      linear-gradient(88.06deg, rgba(255, 255, 255, 0.6) 25.59%, rgba(255, 255, 255, 0.2) 77.45%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%),
+      linear-gradient(272.47deg, rgba(255, 255, 255, 0.8) -4.42%, rgba(255, 255, 255, 0.2) 100.79%);
+    box-shadow: 0px 3px 10px 0px #00000026;
+      filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.15));
+
+    ${({ theme }) => theme.fonts.body1};
+    color: ${({ theme }) => theme.colors.blue1};
+
+    border-radius: 12px;
+
   `
 }

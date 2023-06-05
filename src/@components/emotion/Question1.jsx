@@ -2,8 +2,6 @@ import { RefObject, useEffect, useRef } from 'react'
 import  styled  from 'styled-components'
 import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { emotionData, stepData, userNameData } from '../../recoil/emotion';
-// import next_btn from  '../../assets/image/next_btn.png'
-// import previous_btn from  '../../assets/image/previous_btn.png'
 import { useNavigate } from 'react-router-dom';
 
 export default function Question1 () {
@@ -27,7 +25,7 @@ export default function Question1 () {
     navigation('/');
   }
   
-  // const nameRef = useRef<HTMLInputElement>(null); TS
+  // const nameRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef(null); 
 
 
@@ -60,8 +58,7 @@ export default function Question1 () {
 
 
   return (
-      <>
-      <St.AskWrapper>
+    <>
         <St.AskBox>
           <St.QuestionContainer>
               {QuestText[0]}
@@ -73,26 +70,18 @@ export default function Question1 () {
           type='text'
           ref={nameRef} />
         <St.ButtonContainer>
-          <St.PrevBtn>이전</St.PrevBtn>
-        </St.ButtonContainer>
-          {/* <img className="prev_btn" src={previous_btn} onClick={moveToIntro}  />
-          <img className="next_btn" src={next_btn}  onClick={moveToStep2}  /> */}
-      </St.AskWrapper>
+          <St.PrevBtn onClick={moveToIntro}>이전</St.PrevBtn>
+          <St.NextBtn onClick={moveToStep2}>다음</St.NextBtn>
+      </St.ButtonContainer>
       </>
   )
 }
 
 const St = {
-  AskWrapper : styled.section`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  `,
 
   AskBox: styled.div`
     background-color: rgba(256, 256, 256, 50%);
-    padding: 4rem 0rem; 
-    margin: 2rem;
+    padding: 4rem 4rem; 
     font-size: 1.6rem
   `,
 
@@ -102,62 +91,69 @@ const St = {
     text-align: center;
     justify-content: center;
     white-space: pre-line;
-    > img { 
-      margin-left: 24px;
-      width: 272px;
-    }
   `,
 
   AnswerName : styled.input`
-  box-sizing: border-box;
-  margin: 55px 0px;
-  padding: 10px;
-  
-  background: rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 50px;
+    margin: 55px 0px;
 
-  height: 50px;
-  width: 100%;
-  border-radius: 12px;
+    box-sizing: border-box;
+    padding: 10px;
+    
+    background: rgba(255, 255, 255, 0.5);
 
-  
-  border: 1px solid #FFFFFF;
-  box-shadow: 0px 0px 4px 3px rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
+    border-radius: 12px;
+    border: 1px solid #FFFFFF;
+    box-shadow: 0px 0px 4px 3px rgba(255, 255, 255, 0.2);
   `,
 
   ButtonContainer : styled.div`
   display: flex;
   flex-direction: row;
+  gap: 1.2rem;
 
-  .prev_btn {
-    height: 70;
-    width: 104px;
-    border-radius: 0px;
-
-  }
-  .next_btn {
-    height: 70px;
-    width: 220px;
-    border-radius: 0px;
-
-  }
   `,
   PrevBtn: styled.div`
-    filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.15));
-    backdrop-filter: blur(15px);
-    font-family: Pretendard;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 10.4rem;
+    height: 6rem;
+
+    background: 
+      linear-gradient(88.06deg, rgba(255, 255, 255, 0.6) 25.59%, rgba(255, 255, 255, 0.2) 77.45%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%),
+      linear-gradient(272.47deg, rgba(255, 255, 255, 0.8) -4.42%, rgba(255, 255, 255, 0.2) 100.79%);
     box-shadow: 0px 3px 10px 0px #00000026;
-    
+      filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.15));
 
+    ${({ theme }) => theme.fonts.body1};
+    color: ${({ theme }) => theme.colors.gray3};
 
-  `,
+    border-radius: 12px;
+    `,
 
   NextBtn: styled.div `
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 22rem;
+    height: 6rem;
+
+    background: 
+      linear-gradient(88.06deg, rgba(255, 255, 255, 0.6) 25.59%, rgba(255, 255, 255, 0.2) 77.45%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%),
+      linear-gradient(272.47deg, rgba(255, 255, 255, 0.8) -4.42%, rgba(255, 255, 255, 0.2) 100.79%);
+    box-shadow: 0px 3px 10px 0px #00000026;
+      filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.15));
+
+    ${({ theme }) => theme.fonts.body1};
+    color: ${({ theme }) => theme.colors.blue1};
+
+    border-radius: 12px;
 
   `,
 }

@@ -1,7 +1,5 @@
 import { atom } from "recoil";
 
-// export interface 
-
 export const emotionData = atom({
   key: "emotionData",
   default: { name: "", title: "", emotions: [] },
