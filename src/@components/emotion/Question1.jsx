@@ -43,10 +43,7 @@ export default function Question1 () {
 
     setStep(2);
   }
-  
-  
-  useEffect(() => {
-  }, [emotion])
+
 
   // const getUserName = (e:React.ChangeEvent<HTMLInputElement>) => {
   //   setUserName(e.target.value);
@@ -82,7 +79,7 @@ const St = {
   AskBox: styled.div`
     background-color: rgba(256, 256, 256, 50%);
     padding: 4rem 4rem; 
-    font-size: 1.6rem
+    font-size: 1.6rem;
   `,
 
   QuestionContainer: styled.article `
