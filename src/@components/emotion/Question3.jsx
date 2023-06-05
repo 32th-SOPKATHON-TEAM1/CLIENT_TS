@@ -17,6 +17,9 @@ export default function Question3() {
   }
   const moveToStep4 = () => {  
     setStep(4);
+    const newEmotions = [...emotion.emotions]
+    newEmotions.push(id)
+    setEmotion((prev) => ({ ...prev, emotions: newEmotions }))
   }
 
 
@@ -27,12 +30,8 @@ export default function Question3() {
 
   const ClickedEmotionBtn = (e, id) => {
     // 이전 선택되었던 거 초기화하는 로직 추가 필요
-    setIsClicked(true);
-    setId(id);
-    const newEmotions = [...emotion.emotions]
+    setId(id); //클릭 테두리용
     setPropsName(e.target.value)
-    newEmotions.push(id)
-    setEmotion((prev)=>({...prev, emotions: newEmotions})) 
     setClickedMood(e.target.value)
   }
 
