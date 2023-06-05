@@ -57,20 +57,20 @@ export default function Question3() {
 
   return (
     <>
-        <St.AskBox>
-          <St.QuestionContainer>
-            {QuestText[0]}
-          </St.QuestionContainer>
-        </St.AskBox>
-      <St.selectContainer> 
-        {detailEmotions.map((item) => (
-          <St.Questions isClicked={item.id===id} onClick={(e)=>ClickedEmotionBtn(e, item.id)} key={item.id} value={item.emotion}>{item.emotion}</St.Questions>
-          ))} 
-      </St.selectContainer>
-      <St.ButtonContainer>
-          <St.PrevBtn onClick={moveToStep2}>이전</St.PrevBtn>
-          <St.NextBtn onClick={moveToStep4}>다음</St.NextBtn>
-      </St.ButtonContainer>
+      <St.AskBox>
+        <St.QuestionContainer>
+          {QuestText[0]}
+        </St.QuestionContainer>
+      </St.AskBox>
+    <St.selectContainer> 
+      {detailEmotions.map((item) => (
+        <St.Questions isClicked={item.id===id} onClick={(e)=>ClickedEmotionBtn(e, item.id)} key={item.id} value={item.emotion}>{item.emotion}</St.Questions>
+        ))} 
+    </St.selectContainer>
+    <St.ButtonContainer>
+        <St.PrevBtn onClick={moveToStep2}>이전</St.PrevBtn>
+        <St.NextBtn onClick={moveToStep4}>다음</St.NextBtn>
+    </St.ButtonContainer>
     </>
   )
 }
@@ -90,7 +90,6 @@ const St = {
     text-align: center;
     justify-content: center;
     white-space: pre-line;
-    /* margin-bottom: 19rem; */
   `,
 
   selectContainer: styled.article `
@@ -159,7 +158,5 @@ const St = {
     color: ${({ theme }) => theme.colors.blue1};
 
     border-radius: 12px;
-
   `
-
 }
