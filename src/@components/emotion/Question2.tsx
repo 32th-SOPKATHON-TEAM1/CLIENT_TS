@@ -1,41 +1,42 @@
-import { RefObject, useEffect, useRef } from "react";
+import { useRef } from "react";
 import styled from "styled-components";
-import { useRecoilState, useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
-import { emotionData, stepData, userNameData } from "../../recoil/emotion";
-import { useNavigate } from "react-router-dom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { emotionData, emotionDataTypes, stepData, userNameData } from "../../recoil/emotion";
 
 export default function Question2() {
-  const navigation = useNavigate();
-
-  const [emotion, setEmotion] = useRecoilState(emotionData);
+  const setEmotion = useSetRecoilState(emotionData);
   const userName = useRecoilValue(userNameData);
   const setStep = useSetRecoilState(stepData);
+  const todayRef = useRef<HTMLInputElement>(null);
 
-  const QuestText = {
-    0: `님,
+  const QUESTION_TEXT = `님,
 오늘 하루는 어땠나요?
 한 줄로 이야기해 주세요.
 
-이게 사진의 이름이 될 거예요.`,
-  };
+이게 사진의 이름이 될 거예요.`;
 
   const moveToStep1 = () => {
     setStep(1);
   };
 
   const moveToStep3 = () => {
-    setEmotion((prev) => ({ ...prev, title: todayRef.current.value }));
+    if (todayRef.current) {
+      const value = todayRef.current.value;
+      if (value) {
+        setEmotion((prev) => ({ ...prev, title: value } as emotionDataTypes));
+      } else {
+        console.log("todayRef is null");
+      }
+    }
     setStep(3);
   };
-
-  const todayRef = useRef(null);
 
   return (
     <>
       <St.AskBox>
         <St.QuestionContainer>
           {userName}
-          {QuestText[0]}
+          {QUESTION_TEXT}
         </St.QuestionContainer>
       </St.AskBox>
       <St.AnswerName placeholder="오늘 하루를 정리해주세요." type="text" ref={todayRef} />
