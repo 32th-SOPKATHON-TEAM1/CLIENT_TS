@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { styled } from "styled-components";
-import Button from "../common/button";
+import { useEffect, useState } from "react";
+import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { clickedEmotion, emotionData } from "../../recoil/emotion";
-import next_btn from "../../assets/image/next_btn.png";
-import previous_btn from "../../assets/image/previous_btn.png";
 
 export default function Question4({ setStep, propsName }) {
   const [emotion, setEmotion] = useRecoilState(emotionData);
@@ -96,16 +93,45 @@ const St = {
   ButtonContainer: styled.div`
     display: flex;
     justify-content: center;
+  `,
 
-    .prev_btn {
-      height: 70;
-      width: 104px;
-      border-radius: 0px;
-    }
-    .next_btn {
-      height: 70px;
-      width: 220px;
-      border-radius: 0px;
-    }
+  PrevBtn: styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 10.4rem;
+    height: 6rem;
+
+    background: linear-gradient(88.06deg, rgba(255, 255, 255, 0.6) 25.59%, rgba(255, 255, 255, 0.2) 77.45%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%),
+      linear-gradient(272.47deg, rgba(255, 255, 255, 0.8) -4.42%, rgba(255, 255, 255, 0.2) 100.79%);
+    box-shadow: 0px 3px 10px 0px #00000026;
+    filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.15));
+
+    ${({ theme }) => theme.fonts.body1};
+    color: ${({ theme }) => theme.colors.gray3};
+
+    border-radius: 12px;
+  `,
+
+  NextBtn: styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 22rem;
+    height: 6rem;
+
+    background: linear-gradient(88.06deg, rgba(255, 255, 255, 0.6) 25.59%, rgba(255, 255, 255, 0.2) 77.45%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%),
+      linear-gradient(272.47deg, rgba(255, 255, 255, 0.8) -4.42%, rgba(255, 255, 255, 0.2) 100.79%);
+    box-shadow: 0px 3px 10px 0px #00000026;
+    filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.15));
+
+    ${({ theme }) => theme.fonts.body1};
+    color: ${({ theme }) => theme.colors.blue1};
+
+    border-radius: 12px;
   `,
 };

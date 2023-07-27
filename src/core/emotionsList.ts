@@ -1,10 +1,9 @@
 export interface detailEmotionsProps {
-    id: number;
-    emotion: string;
+  id: number;
+  emotion: string;
 }
 
-
-export const detailEmotions:detailEmotionsProps[] = [
+export const detailEmotions: detailEmotionsProps[] = [
   { id: 0, emotion: "기쁨" },
   { id: 1, emotion: "두려움" },
   { id: 2, emotion: "불쾌감" },
@@ -12,11 +11,11 @@ export const detailEmotions:detailEmotionsProps[] = [
 ];
 
 export interface DetailEmotionProps {
-    id: number;
-    detailEmotion: string;
+  id: number;
+  detailEmotion: string;
 }
 
-export const HAPPY:DetailEmotionProps[] = [
+export const HAPPY: DetailEmotionProps[] = [
   { id: 0, detailEmotion: "감사" },
   { id: 1, detailEmotion: "만족" },
   { id: 2, detailEmotion: "설렘" },
@@ -27,7 +26,7 @@ export const HAPPY:DetailEmotionProps[] = [
   { id: 7, detailEmotion: "홀가분" },
 ];
 
-export const SCARED:DetailEmotionProps[] = [
+export const SCARED: DetailEmotionProps[] = [
   { id: 0, detailEmotion: "긴장" },
   { id: 1, detailEmotion: "당황" },
   { id: 2, detailEmotion: "두려움" },
@@ -38,7 +37,7 @@ export const SCARED:DetailEmotionProps[] = [
   { id: 7, detailEmotion: "놀라움" },
 ];
 
-export const UNPLEASANT:DetailEmotionProps[] = [
+export const UNPLEASANT: DetailEmotionProps[] = [
   { id: 0, detailEmotion: "답답함" },
   { id: 1, detailEmotion: "억울함" },
   { id: 2, detailEmotion: "원망" },
@@ -49,7 +48,7 @@ export const UNPLEASANT:DetailEmotionProps[] = [
   { id: 7, detailEmotion: "부러움" },
 ];
 
-export const SORROWFUL:DetailEmotionProps[] = [
+export const SORROWFUL: DetailEmotionProps[] = [
   { id: 0, detailEmotion: "괴로움" },
   { id: 1, detailEmotion: "그리움" },
   { id: 2, detailEmotion: "미안함" },
@@ -61,11 +60,11 @@ export const SORROWFUL:DetailEmotionProps[] = [
 ];
 
 export interface TodayProps {
-    id: number;
-    sentence: string;
+  id: number;
+  sentence: string;
 }
 
-export const Today:TodayProps[] = [
+export const Today: TodayProps[] = [
   { id: 0, sentence: "평생 간직하고 싶어요" },
   { id: 1, sentence: "친구들과 나누고 싶어요" },
   { id: 2, sentence: "오늘까지만 기억할래요" },
