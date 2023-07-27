@@ -1,57 +1,47 @@
-import { useEffect, useState } from "react";
+import { RefObject, useEffect, useRef } from "react";
 import styled from "styled-components";
-import { useRecoilState } from "recoil";
-import { clickedEmotion, emotionData } from "../../recoil/emotion";
+import { useRecoilState, useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
+import { emotionData, stepData, userNameData } from "../../recoil/emotion";
+import { useNavigate } from "react-router-dom";
 
-export default function Question4({ setStep, propsName }) {
+export default function Question2() {
+  const navigation = useNavigate();
+
   const [emotion, setEmotion] = useRecoilState(emotionData);
-  const [clickedMood, setClickedMood] = useRecoilState(clickedEmotion);
+  const userName = useRecoilValue(userNameData);
+  const setStep = useSetRecoilState(stepData);
 
-  const [isClicked, setIsClicked] = useState(false);
-  const [id, setId] = useState(-1);
+  const QuestText = {
+    0: `님,
+오늘 하루는 어땠나요?
+한 줄로 이야기해 주세요.
+
+이게 사진의 이름이 될 거예요.`,
+  };
+
+  const moveToStep1 = () => {
+    setStep(1);
+  };
 
   const moveToStep3 = () => {
+    setEmotion((prev) => ({ ...prev, title: todayRef.current.value }));
     setStep(3);
   };
 
-  const moveToStep5 = () => {
-    setStep(5);
-  };
-
-  useEffect(() => {
-    console.log(emotion);
-  }, [emotion]);
-
-  const ClickedEmotionBtn = (e, id) => {
-    setIsClicked(true);
-    setId(id);
-    const newEmotions = [...emotion.emotions];
-    newEmotions.push(id);
-    setEmotion((prev) => ({ ...prev, emotions: newEmotions }));
-  };
+  const todayRef = useRef(null);
 
   return (
     <>
       <St.AskBox>
         <St.QuestionContainer>
-          <p> 알려주셔서 고마워요. </p>
-          <p> 어떤 {propsName}이었죠? </p>
+          {userName}
+          {QuestText[0]}
         </St.QuestionContainer>
       </St.AskBox>
-      <St.selectContainer>
-        {clickedMood.map((item) => (
-          <St.Questions
-            isClicked={item.id === id}
-            onClick={(e) => ClickedEmotionBtn(e, item.id)}
-            key={item.id}
-            value={item.detailEmotion}>
-            {item.detailEmotion}
-          </St.Questions>
-        ))}
-      </St.selectContainer>
+      <St.AnswerName placeholder="오늘 하루를 정리해주세요." type="text" ref={todayRef} />
       <St.ButtonContainer>
-        <St.PrevBtn onClick={moveToStep3}>이전</St.PrevBtn>
-        <St.NextBtn onClick={moveToStep5}>다음</St.NextBtn>
+        <St.PrevBtn onClick={moveToStep1}>이전</St.PrevBtn>
+        <St.NextBtn onClick={moveToStep3}>다음</St.NextBtn>
       </St.ButtonContainer>
     </>
   );
@@ -62,37 +52,35 @@ const St = {
     background-color: rgba(256, 256, 256, 50%);
     padding: 4rem 4rem;
     font-size: 1.6rem;
-    margin-bottom: 7.5rem;
   `,
 
   QuestionContainer: styled.article`
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     text-align: center;
     justify-content: center;
     white-space: pre-line;
   `,
-  selectContainer: styled.section`
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 50px;
-  `,
-  Questions: styled.button`
+
+  AnswerName: styled.input`
+    width: 100%;
     height: 50px;
-    width: 158px;
-    left: 0px;
-    top: 0px;
+    margin: 55px 0px;
+
+    box-sizing: border-box;
+    padding: 10px;
+
+    background: rgba(255, 255, 255, 0.5);
+
     border-radius: 12px;
-    background: linear-gradient(120.7deg, rgba(255, 255, 255, 0.8) 5.47%, rgba(255, 255, 255, 0) 100%),
-      linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
-    margin: 5px 5px;
-    border: ${({ isClicked }) =>
-      isClicked ? "1px solid rgba(113, 123, 214, 1)" : "1px solid rgba(255, 255, 255, 1);"};
+    border: 1px solid #ffffff;
+    box-shadow: 0px 0px 4px 3px rgba(255, 255, 255, 0.2);
   `,
 
   ButtonContainer: styled.div`
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    gap: 1.2rem;
   `,
 
   PrevBtn: styled.div`

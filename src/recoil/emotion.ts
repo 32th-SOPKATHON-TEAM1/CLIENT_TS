@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-interface emotionDataTypes {
+export interface emotionDataTypes {
   name: string;
   title: string;
   emotions: [];
@@ -8,7 +8,7 @@ interface emotionDataTypes {
 
 export const emotionData = atom<emotionDataTypes>({
   key: "emotionData",
-  default: { name: "", title: "", emotions: [] },
+  default: { name: "", title: "", emotions: []] },
 });
 
 export const clickedEmotion = atom<string>({

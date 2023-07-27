@@ -28,7 +28,6 @@ export default function Question3() {
   };
 
   const ClickedEmotionBtn = (e, id) => {
-    // 이전 선택되었던 거 초기화하는 로직 추가 필요
     setId(id); //클릭 테두리용
     setPropsName(e.target.value);
     setClickedMood(e.target.value);
@@ -59,7 +58,7 @@ export default function Question3() {
         <St.QuestionContainer>{QuestText[0]}</St.QuestionContainer>
       </St.AskBox>
       <St.selectContainer>
-        {/* {detailEmotions.map((item) => (
+        {detailEmotions.map((item) => (
           <St.Questions
             isClicked={item.id === id}
             onClick={(e) => ClickedEmotionBtn(e, item.id)}
@@ -67,7 +66,7 @@ export default function Question3() {
             value={item.emotion}>
             {item.emotion}
           </St.Questions>
-        ))} */}
+        ))}
       </St.selectContainer>
       <St.ButtonContainer>
         <St.PrevBtn onClick={moveToStep2}>이전</St.PrevBtn>

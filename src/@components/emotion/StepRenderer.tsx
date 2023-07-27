@@ -6,17 +6,6 @@ import Question5 from "./Question5";
 import { useRecoilValue } from "recoil";
 import { stepData } from "../../recoil/emotion";
 
-//  <----- TS ------>
-// export interface StepRendererProps {
-//     setStep: Dispatch<SetStateAction<number>>;
-//     step: number;
-// }
-
-// <-------- TS ---------->
-// export default function StepRenderer({setStep, step}:StepRendererProps) {
-//     const [name, setName] = useState<string>('');
-//     const [propsName, setPropsName] = useState<string>('');
-
 export default function StepRenderer() {
   const step = useRecoilValue(stepData);
 
