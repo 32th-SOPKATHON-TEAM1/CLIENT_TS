@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { clickedEmotion, emotionData, emotionDataTypes, propsNameData, stepData } from "../../recoil/emotion";
 import { HAPPY, SCARED, SORROWFUL, UNPLEASANT, detailEmotions } from "../../core/emotionsList";
+import BottomButton from "../BottomButton";
 
 export default function Question3() {
   const QUESTION_TEXT = `알려주셔서 고마워요. 오늘 기분은 어땠나요?`;
@@ -67,10 +68,7 @@ export default function Question3() {
           </St.Questions>
         ))}
       </St.selectContainer>
-      <St.ButtonContainer>
-        <St.PrevBtn onClick={moveToStep2}>이전</St.PrevBtn>
-        <St.NextBtn onClick={moveToStep4}>다음</St.NextBtn>
-      </St.ButtonContainer>
+      <BottomButton moveToNext={moveToStep2} moveToBack={moveToStep4} backText="이전" nextText="다음" />
     </>
   );
 }
@@ -109,51 +107,5 @@ const St = {
     border: ${({ $isClicked }) =>
       $isClicked ? "1px solid rgba(113, 123, 214, 1)" : "1px solid rgba(255, 255, 255, 1);"};
     margin: 5px 5px;
-  `,
-
-  ButtonContainer: styled.div`
-    display: flex;
-    flex-direction: row;
-    gap: 1.2rem;
-  `,
-
-  PrevBtn: styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 10.4rem;
-    height: 6rem;
-
-    background: linear-gradient(88.06deg, rgba(255, 255, 255, 0.6) 25.59%, rgba(255, 255, 255, 0.2) 77.45%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%),
-      linear-gradient(272.47deg, rgba(255, 255, 255, 0.8) -4.42%, rgba(255, 255, 255, 0.2) 100.79%);
-    box-shadow: 0px 3px 10px 0px #00000026;
-    filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.15));
-
-    ${({ theme }) => theme.fonts.body1};
-    color: ${({ theme }) => theme.colors.gray3};
-
-    border-radius: 12px;
-  `,
-
-  NextBtn: styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 22rem;
-    height: 6rem;
-
-    background: linear-gradient(88.06deg, rgba(255, 255, 255, 0.6) 25.59%, rgba(255, 255, 255, 0.2) 77.45%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%),
-      linear-gradient(272.47deg, rgba(255, 255, 255, 0.8) -4.42%, rgba(255, 255, 255, 0.2) 100.79%);
-    box-shadow: 0px 3px 10px 0px #00000026;
-    filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.15));
-
-    ${({ theme }) => theme.fonts.body1};
-    color: ${({ theme }) => theme.colors.blue1};
-
-    border-radius: 12px;
   `,
 };
