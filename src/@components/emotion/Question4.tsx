@@ -28,13 +28,13 @@ export default function Question4(props: Question4Types) {
     console.log(emotion);
   }, [emotion]);
 
-  const ClickedEmotionBtn = (e: React.MouseEventHandler<HTMLButtonElement>, id: number) => {
-    setIsClicked(true);
-    setId(id);
-    const newEmotions = [...emotion.emotions];
-    newEmotions.push(id);
-    setEmotion((prev) => ({ ...prev, emotions: newEmotions }));
-  };
+  // const ClickedEmotionBtn = (e: React.MouseEventHandler<HTMLButtonElement>, id: number) => {
+  //   setIsClicked(true);
+  //   setId(id);
+  //   const newEmotions = [...emotion.emotions];
+  //   newEmotions.push(id);
+  //   setEmotion((prev) => ({ ...prev, emotions: newEmotions }));
+  // };
 
   return (
     <>
@@ -45,7 +45,7 @@ export default function Question4(props: Question4Types) {
         </St.QuestionContainer>
       </St.AskBox>
       <St.selectContainer>
-        {clickedMood.map((item) => (
+        {/* {clickedMood.map((item) => (
           <St.Questions
             isClicked={item.id === id}
             onClick={(e) => ClickedEmotionBtn(e:React.MouseEventHandler<HTMLButtonElement></HTMLButtonElement>, item.id)}
@@ -53,7 +53,7 @@ export default function Question4(props: Question4Types) {
             value={item.detailEmotion}>
             {item.detailEmotion}
           </St.Questions>
-        ))}
+        ))} */}
       </St.selectContainer>
       <St.ButtonContainer>
         <St.PrevBtn onClick={moveToStep3}>이전</St.PrevBtn>

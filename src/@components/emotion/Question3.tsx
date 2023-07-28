@@ -1,52 +1,51 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { clickedEmotion, emotionData, propsNameData, stepData } from "../../recoil/emotionJS";
-import { HAPPY, SCARED, SORROWFUL, UNPLEASANT, detailEmotions } from "../../core/emotionsListJS";
+import { clickedEmotion, emotionData, emotionDataTypes, propsNameData, stepData } from "../../recoil/emotion";
+import { HAPPY, SCARED, SORROWFUL, UNPLEASANT, detailEmotions } from "../../core/emotionsList";
 
 export default function Question3() {
+  const QUESTION_TEXT = `알려주셔서 고마워요. 오늘 기분은 어땠나요?`;
   const [id, setId] = useState(-1);
   const [emotion, setEmotion] = useRecoilState(emotionData);
   const [clickedMood, setClickedMood] = useRecoilState(clickedEmotion);
-  const [isClicked, setIsClicked] = useState(false);
   const setStep = useSetRecoilState(stepData);
   const setPropsName = useSetRecoilState(propsNameData);
+  const [isClicked, setIsClicked] = useState(false);
+  const [showingEmotion, setShowingEmotion] = useState([]);
 
   const moveToStep2 = () => {
     setStep(2);
   };
+
   const moveToStep4 = () => {
+    console.log(id);
     setStep(4);
-    const newEmotions = [...emotion.emotions];
+    const newEmotions: number[] = [...emotion.emotions];
     newEmotions.push(id);
-    setEmotion((prev) => ({ ...prev, emotions: newEmotions }));
+    setEmotion((prev) => ({ ...prev, emotions: newEmotions } as emotionDataTypes));
   };
 
-  const QuestText = {
-    0: `알려주셔서 고마워요.
-  오늘 기분은 어땠나요?`,
-  };
-
-  const ClickedEmotionBtn = (e, id) => {
-    setId(id); //클릭 테두리용
-    setPropsName(e.target.value);
-    setClickedMood(e.target.value);
+  const ClickedEmotionBtn = (e: React.MouseEvent<HTMLButtonElement>, id: number) => {
+    setId(id); // 클릭 테두리용
+    setPropsName(e.currentTarget.value);
+    setClickedMood(e.currentTarget.value);
   };
 
   useEffect(() => {
     ChangeName(clickedMood);
   }, [clickedMood]);
 
-  const ChangeName = (clickedMood) => {
+  const ChangeName = (clickedMood: string) => {
     switch (clickedMood) {
       case "기쁨":
-        return setClickedMood(HAPPY);
+        return setShowingEmotion(HAPPY);
       case "두려움":
-        return setClickedMood(SCARED);
+        return setShowingEmotion(SCARED);
       case "불쾌감":
-        return setClickedMood(UNPLEASANT);
+        return setShowingEmotion(UNPLEASANT);
       case "슬픔":
-        return setClickedMood(SORROWFUL);
+        return setShowingEmotion(SORROWFUL);
     }
   };
 
@@ -55,12 +54,12 @@ export default function Question3() {
   return (
     <>
       <St.AskBox>
-        <St.QuestionContainer>{QuestText[0]}</St.QuestionContainer>
+        <St.QuestionContainer>{QUESTION_TEXT}</St.QuestionContainer>
       </St.AskBox>
       <St.selectContainer>
         {detailEmotions.map((item) => (
           <St.Questions
-            isClicked={item.id === id}
+            $isClicked={item.id === id}
             onClick={(e) => ClickedEmotionBtn(e, item.id)}
             key={item.id}
             value={item.emotion}>
@@ -107,8 +106,8 @@ const St = {
     border-radius: 12px;
     background: linear-gradient(120.7deg, rgba(255, 255, 255, 0.8) 5.47%, rgba(255, 255, 255, 0) 100%),
       linear-gradient(0deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
-    border: ${({ isClicked }) =>
-      isClicked ? "1px solid rgba(113, 123, 214, 1)" : "1px solid rgba(255, 255, 255, 1);"};
+    border: ${({ $isClicked }) =>
+      $isClicked ? "1px solid rgba(113, 123, 214, 1)" : "1px solid rgba(255, 255, 255, 1);"};
     margin: 5px 5px;
   `,
 
