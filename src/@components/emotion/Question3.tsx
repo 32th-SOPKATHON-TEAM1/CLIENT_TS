@@ -36,20 +36,20 @@ export default function Question3() {
     ChangeName(clickedMood);
   }, [clickedMood]);
 
-  const ChangeName = (clickedMood: string) => {
-    switch (clickedMood) {
-      case "기쁨":
-        return setShowingEmotion(HAPPY);
-      case "두려움":
-        return setShowingEmotion(SCARED);
-      case "불쾌감":
-        return setShowingEmotion(UNPLEASANT);
-      case "슬픔":
-        return setShowingEmotion(SORROWFUL);
-    }
-  };
+  // const ChangeName = (clickedMood: string) => {
+  //   switch (clickedMood) {
+  //     case "기쁨":
+  //       return setShowingEmotion(HAPPY);
+  //     case "두려움":
+  //       return setShowingEmotion(SCARED);
+  //     case "불쾌감":
+  //       return setShowingEmotion(UNPLEASANT);
+  //     case "슬픔":
+  //       return setShowingEmotion(SORROWFUL);
+  //   }
+  // };
 
-  console.log(detailEmotions);
+  console.log("detailEmotions", detailEmotions);
 
   return (
     <>
@@ -115,5 +115,45 @@ const St = {
     display: flex;
     flex-direction: row;
     gap: 1.2rem;
+  `,
+
+  PrevBtn: styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 10.4rem;
+    height: 6rem;
+
+    background: linear-gradient(88.06deg, rgba(255, 255, 255, 0.6) 25.59%, rgba(255, 255, 255, 0.2) 77.45%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%),
+      linear-gradient(272.47deg, rgba(255, 255, 255, 0.8) -4.42%, rgba(255, 255, 255, 0.2) 100.79%);
+    box-shadow: 0px 3px 10px 0px #00000026;
+    filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.15));
+
+    ${({ theme }) => theme.fonts.body1};
+    color: ${({ theme }) => theme.colors.gray3};
+
+    border-radius: 12px;
+  `,
+
+  NextBtn: styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 22rem;
+    height: 6rem;
+
+    background: linear-gradient(88.06deg, rgba(255, 255, 255, 0.6) 25.59%, rgba(255, 255, 255, 0.2) 77.45%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%),
+      linear-gradient(272.47deg, rgba(255, 255, 255, 0.8) -4.42%, rgba(255, 255, 255, 0.2) 100.79%);
+    box-shadow: 0px 3px 10px 0px #00000026;
+    filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.15));
+
+    ${({ theme }) => theme.fonts.body1};
+    color: ${({ theme }) => theme.colors.blue1};
+
+    border-radius: 12px;
   `,
 };
