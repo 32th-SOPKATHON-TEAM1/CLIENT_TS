@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Emotion from "./@pages/emotion";
+import Emotion from "./@pages/emotion.jsx";
 import Landing from "./@pages/landing";
 import Loading from "./@pages/loading";
 import Print from "./@pages/print";
