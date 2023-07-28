@@ -1,31 +1,37 @@
 import { atom } from "recoil";
 
-export const emotionData = atom({
+export interface emotionDataTypes {
+  name: string;
+  title: string;
+  emotions: [];
+}
+
+export const emotionData = atom<emotionDataTypes>({
   key: "emotionData",
   default: { name: "", title: "", emotions: [] },
 });
 
-export const clickedEmotion = atom({
+export const clickedEmotion = atom<string>({
   key: "clickedEmotion",
   default: "",
 });
 
-export const responseEmotion = atom({
+export const responseEmotion = atom<[]>({
   key: "responseEmotion",
   default: [],
 });
 
-export const userNameData = atom({
-    key: "userNameData",
-    default: "",
+export const userNameData = atom<string>({
+  key: "userNameData",
+  default: "",
 });
 
-export const stepData = atom({
-    key: "stepData",
-    default: 1,
+export const stepData = atom<number>({
+  key: "stepData",
+  default: 1,
 });
 
-export const propsNameData = atom({
-    key: "propsNameData",
-    default: "",
+export const propsNameData = atom<string>({
+  key: "propsNameData",
+  default: "",
 });
