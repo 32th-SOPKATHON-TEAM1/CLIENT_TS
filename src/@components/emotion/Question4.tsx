@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { clickedEmotion, emotionData, showingEmotionData } from "../../recoil/emotion";
 import BottomButton from "./BottomButton";
+import { useNavigate } from "react-router-dom";
 
 interface Question4Types {
   setStep: Dispatch<SetStateAction<boolean>>;
@@ -19,26 +20,27 @@ export default function Question4(props: Question4Types) {
   const [id, setId] = useState(-1);
 
   const showingEmotion = useRecoilValue(showingEmotionData);
+  const navigate = useNavigate();
 
   const moveToStep3 = () => {
     setStep(3);
   };
 
   const moveToStep5 = () => {
-    setStep(5);
+    navigate("/loading");
   };
 
   useEffect(() => {
     console.log(emotion);
   }, [emotion]);
 
-  // const ClickedEmotionBtn = (e: React.MouseEventHandler<HTMLButtonElement>, id: number) => {
-  //   setIsClicked(true);
-  //   setId(id);
-  //   const newEmotions = [...emotion.emotions];
-  //   newEmotions.push(id);
-  //   setEmotion((prev) => ({ ...prev, emotions: newEmotions }));
-  // };
+  const ClickedEmotionBtn = (e: React.MouseEventHandler<HTMLButtonElement>, id: number) => {
+    setIsClicked(true);
+    setId(id);
+    const newEmotions = [...emotion.emotions];
+    newEmotions.push(id);
+    setEmotion((prev) => ({ ...prev, emotions: newEmotions }));
+  };
 
   return (
     <>
