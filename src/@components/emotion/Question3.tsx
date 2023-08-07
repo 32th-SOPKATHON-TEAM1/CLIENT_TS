@@ -6,7 +6,7 @@ import { HAPPY, SCARED, SORROWFUL, UNPLEASANT, detailEmotions } from "../../core
 import BottomButton from "./BottomButton";
 
 export default function Question3() {
-  const QUESTION_TEXT = `알려주셔서 고마워요. 오늘 기분은 어땠나요?`;
+  const QUESTION_TEXT = `알려주셔서 고마워요. \n 오늘 기분은 어땠나요?`;
   const [id, setId] = useState(-1);
   const [emotion, setEmotion] = useRecoilState(emotionData);
   const [clickedMood, setClickedMood] = useRecoilState(clickedEmotion);
@@ -68,7 +68,7 @@ export default function Question3() {
           </St.Questions>
         ))}
       </St.selectContainer>
-      <BottomButton moveToNext={moveToStep2} moveToBack={moveToStep4} backText="이전" nextText="다음" />
+      <BottomButton moveToBack={moveToStep2} moveToNext={moveToStep4} backText="이전" nextText="다음" />
     </>
   );
 }
@@ -98,7 +98,7 @@ const St = {
     margin-bottom: 19rem;
   `,
 
-  Questions: styled.button`
+  Questions: styled.button<{ $isClicked: boolean }>`
     flex: 1 1 40%;
     height: 5rem;
     border-radius: 12px;
