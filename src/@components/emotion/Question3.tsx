@@ -37,18 +37,18 @@ export default function Question3() {
   //   ChangeName(clickedMood);
   // }, [clickedMood]);
 
-  // const ChangeName = (clickedMood: string) => {
-  //   switch (clickedMood) {
-  //     case "기쁨":
-  //       return setShowingEmotion(HAPPY);
-  //     case "두려움":
-  //       return setShowingEmotion(SCARED);
-  //     case "불쾌감":
-  //       return setShowingEmotion(UNPLEASANT);
-  //     case "슬픔":
-  //       return setShowingEmotion(SORROWFUL);
-  //   }
-  // };
+  const ChangeName = (clickedMood: string) => {
+    switch (clickedMood) {
+      case "기쁨":
+        return setShowingEmotion(HAPPY);
+      case "두려움":
+        return setShowingEmotion(SCARED);
+      case "불쾌감":
+        return setShowingEmotion(UNPLEASANT);
+      case "슬픔":
+        return setShowingEmotion(SORROWFUL);
+    }
+  };
 
   console.log("detailEmotions", detailEmotions);
 
