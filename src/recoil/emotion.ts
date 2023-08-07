@@ -16,8 +16,8 @@ export const clickedEmotion = atom<string>({
   default: "",
 });
 
-export const responseEmotion = atom<[]>({
-  key: "responseEmotion",
+export const showingEmotionData = atom<[]>({
+  key: "showingEmotionData",
   default: [],
 });
 

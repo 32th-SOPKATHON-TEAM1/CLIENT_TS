@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useSetRecoilState } from "recoil";
 import { emotionData, emotionDataTypes, stepData, userNameData } from "../../recoil/emotion";
 import { useNavigate } from "react-router-dom";
+import BottomButton from "./BottomButton";
 
 export default function Question1() {
   const navigation = useNavigate();
@@ -25,6 +26,7 @@ export default function Question1() {
   const nameRef = useRef<HTMLInputElement>(null);
 
   const moveToStep2 = () => {
+    console.log("moveToStep2");
     if (nameRef.current) {
       const value = nameRef.current.value;
       if (value) {
@@ -47,10 +49,7 @@ export default function Question1() {
         <St.QuestionContainer>{QUESTION_TEXT}</St.QuestionContainer>
       </St.AskBox>
       <St.AnswerName onChange={getUserName} placeholder="이름을 입력해주세요" type="text" ref={nameRef} />
-      <St.ButtonContainer>
-        <St.PrevBtn onClick={moveToIntro}>이전</St.PrevBtn>
-        <St.NextBtn onClick={moveToStep2}>다음</St.NextBtn>
-      </St.ButtonContainer>
+      <BottomButton moveToNext={moveToStep2} moveToBack={moveToIntro} backText="이전" nextText="다음" />
     </>
   );
 }
