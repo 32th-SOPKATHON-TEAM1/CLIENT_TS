@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { clickedEmotion, emotionData, emotionDataTypes, propsNameData, stepData } from "../../recoil/emotion";
+import {
+  clickedEmotion,
+  emotionData,
+  emotionDataTypes,
+  propsNameData,
+  showingEmotionData,
+  stepData,
+} from "../../recoil/emotion";
 import { HAPPY, SCARED, SORROWFUL, UNPLEASANT, detailEmotions } from "../../core/emotionsList";
 import BottomButton from "./BottomButton";
 
@@ -13,7 +20,7 @@ export default function Question3() {
   const setStep = useSetRecoilState(stepData);
   const setPropsName = useSetRecoilState(propsNameData);
   const [isClicked, setIsClicked] = useState(false);
-  const [showingEmotion, setShowingEmotion] = useState([]);
+  const [showingEmotion, setShowingEmotion] = useRecoilState(showingEmotionData);
 
   const moveToStep2 = () => {
     setStep(2);
@@ -31,11 +38,13 @@ export default function Question3() {
     setId(id); // 클릭 테두리용
     setPropsName(e.currentTarget.value);
     setClickedMood(e.currentTarget.value);
+    ChangeName(clickedMood);
   };
 
-  // useEffect(() => {
-  //   ChangeName(clickedMood);
-  // }, [clickedMood]);
+  useEffect(() => {
+    console.log(clickedMood);
+    console.log(showingEmotion);
+  }, [clickedMood, showingEmotion]);
 
   const ChangeName = (clickedMood: string) => {
     switch (clickedMood) {
