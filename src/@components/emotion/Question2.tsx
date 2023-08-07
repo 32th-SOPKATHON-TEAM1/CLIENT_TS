@@ -21,6 +21,7 @@ export default function Question2() {
   };
 
   const moveToStep3 = () => {
+    console.log("moveToStep3");
     if (todayRef.current) {
       const value = todayRef.current.value;
       if (value) {
@@ -41,7 +42,7 @@ export default function Question2() {
         </St.QuestionContainer>
       </St.AskBox>
       <St.AnswerName placeholder="오늘 하루를 정리해주세요." type="text" ref={todayRef} />
-      <BottomButton moveToNext={moveToStep1} moveToBack={moveToStep3} backText="이전" nextText="다음" />
+      <BottomButton moveToBack={moveToStep1} moveToNext={moveToStep3} backText="이전" nextText="다음" />
     </>
   );
 }

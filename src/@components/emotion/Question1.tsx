@@ -26,6 +26,7 @@ export default function Question1() {
   const nameRef = useRef<HTMLInputElement>(null);
 
   const moveToStep2 = () => {
+    console.log("moveToStep2");
     if (nameRef.current) {
       const value = nameRef.current.value;
       if (value) {
