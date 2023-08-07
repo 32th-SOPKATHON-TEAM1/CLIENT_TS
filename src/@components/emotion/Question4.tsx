@@ -89,7 +89,7 @@ const St = {
   `,
   Questions: styled.button<{ isClicked: boolean }>`
     height: 50px;
-    width: 158px;
+    width: 140px;
     left: 0px;
     top: 0px;
     border-radius: 12px;
