@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { clickedEmotion, emotionData, emotionDataTypes, propsNameData, stepData } from "../../recoil/emotion";
 import { HAPPY, SCARED, SORROWFUL, UNPLEASANT, detailEmotions } from "../../core/emotionsList";
-import BottomButton from "../BottomButton";
+import BottomButton from "./BottomButton";
 
 export default function Question3() {
   const QUESTION_TEXT = `알려주셔서 고마워요. 오늘 기분은 어땠나요?`;
@@ -33,9 +33,9 @@ export default function Question3() {
     setClickedMood(e.currentTarget.value);
   };
 
-  useEffect(() => {
-    ChangeName(clickedMood);
-  }, [clickedMood]);
+  // useEffect(() => {
+  //   ChangeName(clickedMood);
+  // }, [clickedMood]);
 
   // const ChangeName = (clickedMood: string) => {
   //   switch (clickedMood) {

@@ -2,7 +2,7 @@ import { useRef } from "react";
 import styled from "styled-components";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { emotionData, emotionDataTypes, stepData, userNameData } from "../../recoil/emotion";
-import BottomButton from "../BottomButton";
+import BottomButton from "./BottomButton";
 
 export default function Question2() {
   const setEmotion = useSetRecoilState(emotionData);

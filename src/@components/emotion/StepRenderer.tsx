@@ -2,7 +2,6 @@ import Question1 from "./Question1";
 import Question2 from "./Question2";
 import Question3 from "./Question3";
 import Question4 from "./Question4";
-import Question5 from "./Question5";
 import { useRecoilValue } from "recoil";
 import { stepData } from "../../recoil/emotion";
 
@@ -18,7 +17,5 @@ export default function StepRenderer() {
       return <Question3 />;
     case 4:
       return <Question4 />;
-    case 5:
-      return <Question5 />;
   }
 }

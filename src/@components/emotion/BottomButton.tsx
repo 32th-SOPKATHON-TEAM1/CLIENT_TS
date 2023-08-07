@@ -20,7 +20,7 @@ export default function BottomButton(props: BottomButtonTypes) {
 const St = {
   ButtonContainer: styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
   `,
 
   PrevBtn: styled.div`
@@ -28,7 +28,7 @@ const St = {
     justify-content: center;
     align-items: center;
 
-    width: 10.4rem;
+    width: 8.4rem;
     height: 6rem;
 
     background: linear-gradient(88.06deg, rgba(255, 255, 255, 0.6) 25.59%, rgba(255, 255, 255, 0.2) 77.45%),
@@ -48,7 +48,7 @@ const St = {
     justify-content: center;
     align-items: center;
 
-    width: 22rem;
+    width: 20rem;
     height: 6rem;
 
     background: linear-gradient(88.06deg, rgba(255, 255, 255, 0.6) 25.59%, rgba(255, 255, 255, 0.2) 77.45%),

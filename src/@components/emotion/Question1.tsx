@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useSetRecoilState } from "recoil";
 import { emotionData, emotionDataTypes, stepData, userNameData } from "../../recoil/emotion";
 import { useNavigate } from "react-router-dom";
-import BottomButton from "../BottomButton";
+import BottomButton from "./BottomButton";
 
 export default function Question1() {
   const navigation = useNavigate();
